@@ -1,16 +1,25 @@
 const puppeeter = require('puppeteer');
 
+// service
+const createCaptureLink = require('./captureLink');
+
+// utils
 const { getComments, loadMore } = require('./utils/scanData');
 const { counted, sorted } = require('./utils/parsedDate');
 
-async function createScraping(url) {
+async function createScraping() {
+  const captureLink = createCaptureLink();
+
+  // inicialize
   const browser = await puppeeter.launch();
 
   async function start() {
-    console.log('> [scraping] Starting done!');
     try {
+      const { link } = await captureLink.start();
+
+      console.log('> [scraping] Starting done!');
       const page = await browser.newPage();
-      await page.goto(url);
+      await page.goto(link);
 
       await loadMore(page, '.dCJp8');
       const mentions = await getComments(page, '.C4VMK span a');

@@ -10,4 +10,8 @@ function sorted(mentions = {}) {
   return sortedData;
 }
 
-module.exports = { counted, sorted };
+function functionToPromise(func, ...args) {
+  return new Promise((resolve) => func(...args, resolve));
+}
+
+module.exports = { counted, sorted, functionToPromise };

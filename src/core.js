@@ -1,7 +1,7 @@
 const createScraping = require('./scraping');
 
 function createCore() {
-  const scraping = createScraping('https://www.instagram.com/p/CCkFH1mHQNy/');
+  const scraping = createScraping();
 
   async function start() {
     console.log('> [core] Starting done!');
