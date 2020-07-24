@@ -1,21 +1,19 @@
 const puppeeter = require('puppeteer');
 
 // service
-const createCaptureLink = require('./captureLink');
+const createCaptureLEntry = require('./captureEntry');
 
 // utils
 const { getComments, loadMore } = require('./utils/scanData');
 const { counted, sorted } = require('./utils/parsedDate');
 
 async function createScraping() {
-  const captureLink = createCaptureLink();
-
-  // inicialize
+  const captureEntry = createCaptureLEntry();
   const browser = await puppeeter.launch();
 
   async function start() {
     try {
-      const { link } = await captureLink.start();
+      const { link } = await captureEntry.start();
 
       console.log('> [scraping] Starting done!');
       const page = await browser.newPage();
@@ -26,6 +24,7 @@ async function createScraping() {
       const countedMentions = counted(mentions);
       const rankMentions = sorted(countedMentions);
       rankMentions.forEach((mention) => console.log(mention));
+      return rankMentions;
     } catch {
       throw new Error('Error when scraping data');
     }

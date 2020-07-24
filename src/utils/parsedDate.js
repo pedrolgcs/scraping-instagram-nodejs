@@ -4,7 +4,7 @@ function counted(mentions = []) {
   return count;
 }
 
-function sorted(mentions = {}) {
+function sorted(mentions = {}, mentionPodium) {
   const data = Object.entries(mentions);
   const sortedData = data.sort((a, b) => b[1] - a[1]);
   return sortedData;

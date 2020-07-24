@@ -1,3 +1,4 @@
+// service
 const createScraping = require('./scraping');
 
 function createCore() {

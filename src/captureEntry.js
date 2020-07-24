@@ -1,4 +1,6 @@
 const readline = require('readline');
+
+// utils
 const { functionToPromise } = require('./utils/parsedDate');
 
 const terminal = readline.createInterface({
@@ -9,7 +11,7 @@ const terminal = readline.createInterface({
 const questionFunc = terminal.question.bind(terminal);
 const questionAsync = (msg) => functionToPromise(questionFunc, `${msg}`);
 
-function createCaptureLink() {
+function createCaptureEntry() {
   async function start() {
     console.log('> [Capture Link] Starting done!');
     const link = await questionAsync('* Instagram Link: ');
@@ -30,4 +32,4 @@ function createCaptureLink() {
   };
 }
 
-module.exports = createCaptureLink;
+module.exports = createCaptureEntry;
